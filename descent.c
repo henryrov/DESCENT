@@ -24,7 +24,7 @@ void print_tokens(struct token_s *tokens)
   printf("End token\n");
 }
 
-float parse_expression_from_string(char *string, int *error_index)
+float evaluate_expression_from_string(char *string, int *error_index)
 {
   int string_len = strlen(string) + 1;
 

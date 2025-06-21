@@ -13,8 +13,12 @@ void tokenize(char *input_string, struct token_s *token_list)
   for (int i = 0; input_string[i] != '\0'; i++)
     {
       char current_char = input_string[i];
-    
-      if (current_char == '+' || current_char == '-'
+
+      if (current_char == ' ')
+        {
+          continue;
+        }
+      else if (current_char == '+' || current_char == '-'
           || current_char == '*' || current_char == '/'
           || current_char == '^' || current_char == '('
           || current_char == ')')

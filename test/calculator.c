@@ -17,7 +17,7 @@ void main(void)
         }
       
       int error_index = -1;
-      float result = parse_expression_from_string(input_string, &error_index);
+      float result = evaluate_expression_from_string(input_string, &error_index);
       if (error_index != -1)
         {
           printf("Error at index %d\n", error_index);
