@@ -2,15 +2,20 @@
 
 #include "include.h"
 
-void tokenize(char *input_string, struct token_s *token_list)
+int tokenize(char *input_string, int string_len, struct token_s *token_list)
 {
   int token_index = 0;
   struct token_s *current_token = &token_list[token_index];
   
-  char working_string[MAX_INPUT_LENGTH + 1];
+  char *working_string = (char *)malloc(string_len * sizeof(char));
+  if (working_string == NULL)
+    {
+      return -1;
+    }
+  
   int working_index = 0;
   
-  for (int i = 0; input_string[i] != '\0'; i++)
+  for (int i = 0; i < string_len; i++)
     {
       char current_char = input_string[i];
 
@@ -53,7 +58,14 @@ void tokenize(char *input_string, struct token_s *token_list)
 
   if (working_index != 0)
     {
-      working_string[working_index] = '\0';
+      if (working_index >= string_len)
+        {
+          working_string[string_len - 1] = '\0';
+        }
+      else
+        {
+          working_string[working_index] = '\0';
+        }
       current_token->type = NUMBER;
       char *end = NULL;
       current_token->value = strtof(working_string, &end);
@@ -66,4 +78,8 @@ void tokenize(char *input_string, struct token_s *token_list)
   current_token->type = END;
   current_token->symbol = '\0';
   current_token->value = 0.0;
+
+  free(working_string);
+
+  return 0;
 }

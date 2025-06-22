@@ -2,6 +2,10 @@ ifeq ($(PREFIX),)
     PREFIX := /usr/local
 endif
 
+test/fuzz: token.c expression.c descent.c test/fuzz.cpp
+	clang -g -fsanitize=address,fuzzer $^ -o $@
+	./test/fuzz -max_len=40
+
 test/tests: token.o expression.o descent.o test/tests.o
 	$(CC) $(LDFLAGS) -o $@ $^ -lm -lcunit
 	./test/tests

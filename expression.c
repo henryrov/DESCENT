@@ -21,6 +21,7 @@ float parse_item(struct token_s *tokens, int *index, int *error_index)
   if (tokens[*index].type == NUMBER)
     {
       result = tokens[*index].value;
+      (*index)++;
     }
   else if (tokens[*index].type == SYMBOL)
     {
@@ -28,6 +29,13 @@ float parse_item(struct token_s *tokens, int *index, int *error_index)
         {
           (*index)++;
           result = parse_expression(tokens, index, error_index);
+          if (tokens[*index].symbol != ')')
+            {
+              *error_index = *index;
+              return 0.0;
+            }
+          
+          (*index)++;
           ERROR_CHECK(*error_index);
         }
       else
@@ -37,7 +45,6 @@ float parse_item(struct token_s *tokens, int *index, int *error_index)
         }
     }
   
-  (*index)++;
   return result;
 }
 

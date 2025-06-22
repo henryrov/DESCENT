@@ -8,10 +8,10 @@
 void test_tokenize(void)
 {
   char input_string[] = "1+ 20 -300 * 4000/5000^ 60000* ( -1 ) ";
-  int max_tokens = strlen(input_string) + 1;
+  int max_tokens = strlen(input_string) + 2;
   struct token_s *tokens =
     (struct token_s *)malloc(max_tokens * sizeof(struct token_s));
-  tokenize(input_string, tokens);
+  tokenize(input_string, max_tokens, tokens);
   CU_ASSERT(tokens[0].value == 1.0);
   CU_ASSERT(tokens[1].symbol == '+');
   CU_ASSERT(tokens[2].value == 20.0);

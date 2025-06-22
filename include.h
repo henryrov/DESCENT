@@ -21,7 +21,7 @@ struct token_s
 
 /* Functions */
 
-void tokenize(char *input_string, struct token_s *token_list);
+int tokenize(char *input_string, int string_len, struct token_s *token_list);
 float parse_expression(struct token_s *tokens, int *index, int *error_index);
 
 #endif
