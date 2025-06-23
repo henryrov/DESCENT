@@ -19,9 +19,12 @@ int tokenize(char *input_string, int string_len, struct token_s *token_list)
     {
       char current_char = input_string[i];
 
-      if (current_char == ' ')
+      if ((current_char >= 48) && (current_char <= 57))
         {
-          continue;
+          /* Character is a number */
+          
+          working_string[working_index] = current_char;
+          working_index++;
         }
       else if (current_char == '+' || current_char == '-'
           || current_char == '*' || current_char == '/'
@@ -51,8 +54,8 @@ int tokenize(char *input_string, int string_len, struct token_s *token_list)
         }
       else
         {
-          working_string[working_index] = current_char;
-          working_index++;
+          /* Unrecognized character */
+          continue;
         }
     }
 

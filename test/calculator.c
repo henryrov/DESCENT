@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../include.h"
 #include "../descent.h"
+
+#define MAX_INPUT_LENGTH 40
 
 void main(void)
 {
@@ -12,7 +13,7 @@ void main(void)
       scanf("%s", input_string);
       if (input_string[MAX_INPUT_LENGTH] != '\0')
         {
-          printf("Input is too long!");
+          printf("Input is too long!/n");
           continue;
         }
       
@@ -20,7 +21,7 @@ void main(void)
       float result = evaluate_expression_from_string(input_string, &error_index);
       if (error_index != -1)
         {
-          printf("Error at index %d\n", error_index);
+          printf("Error at token index %d\n", error_index);
         }
       else
         {

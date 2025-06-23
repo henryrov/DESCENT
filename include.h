@@ -1,8 +1,6 @@
 #ifndef INCLUDE_H
 #define INCLUDE_H
 
-#define MAX_INPUT_LENGTH 20
-
 /* Types */
 
 enum token_type_e

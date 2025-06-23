@@ -2,16 +2,16 @@ ifeq ($(PREFIX),)
     PREFIX := /usr/local
 endif
 
-test/fuzz: token.c expression.c descent.c test/fuzz.cpp
-	clang -g -fsanitize=address,fuzzer $^ -o $@
-	./test/fuzz -max_len=40
+fuzz: token.c expression.c descent.c test/fuzz.cpp
+	clang -g -fsanitize=address,fuzzer $^ -o test/$@
+	./test/fuzz -max_len=1000
 
-test/tests: token.o expression.o descent.o test/tests.o
-	$(CC) $(LDFLAGS) -o $@ $^ -lm -lcunit
+tests: token.o expression.o descent.o test/tests.o
+	$(CC) $(LDFLAGS) -o test/$@ $^ -lm -lcunit
 	./test/tests
 
-test/calculator: token.o expression.o descent.o test/calculator.o
-	$(CC) $(LDFLAGS) -o $@ $^ -lm
+calculator: token.o expression.o descent.o test/calculator.o
+	$(CC) $(LDFLAGS) -o test/$@ $^ -lm
 	./test/calculator
 
 install: token.o expression.o descent.o
@@ -38,4 +38,4 @@ test/tests.o: test/tests.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	$(RM) test/tests test/calculator test/tests.o test/calculator.o token.o expression.o
+	$(RM) test/tests test/fuzz test/calculator test/tests.o test/calculator.o token.o expression.o
