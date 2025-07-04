@@ -45,7 +45,7 @@ void test_evaluate(void)
   CU_ASSERT(error_index_2 == -1);
   CU_ASSERT(result_2 == 5.5);
 
-  char input_string_3[] = "(2+3)*(-3-(-8))^2/10";  
+  char input_string_3[] = "(2+3)*(-3-(-8))^2/10";
   int error_index_3 = -1;
   float result_3 = evaluate_expression_from_string(input_string_3, &error_index_3);
   CU_ASSERT(error_index_3 == -1);

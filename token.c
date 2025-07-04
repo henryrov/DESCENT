@@ -1,20 +1,19 @@
 #include <stdlib.h>
-
 #include "include.h"
 
 int tokenize(char *input_string, int string_len, struct token_s *token_list)
 {
   int token_index = 0;
   struct token_s *current_token = &token_list[token_index];
-  
+
   char *working_string = (char *)malloc(string_len * sizeof(char));
   if (working_string == NULL)
     {
       return -1;
     }
-  
+
   int working_index = 0;
-  
+
   for (int i = 0; i < string_len; i++)
     {
       char current_char = input_string[i];
@@ -22,7 +21,7 @@ int tokenize(char *input_string, int string_len, struct token_s *token_list)
       if ((current_char >= 48) && (current_char <= 57))
         {
           /* Character is a number */
-          
+
           working_string[working_index] = current_char;
           working_index++;
         }
@@ -44,11 +43,11 @@ int tokenize(char *input_string, int string_len, struct token_s *token_list)
               token_index++;
               current_token = &token_list[token_index];
             }
-          
+
           current_token->type = SYMBOL;
           current_token->symbol = current_char;
           current_token->value = 0.0;
-          
+
           token_index++;
           current_token = &token_list[token_index];
         }
@@ -77,7 +76,7 @@ int tokenize(char *input_string, int string_len, struct token_s *token_list)
       token_index++;
       current_token = &token_list[token_index];
     }
-  
+
   current_token->type = END;
   current_token->symbol = '\0';
   current_token->value = 0.0;

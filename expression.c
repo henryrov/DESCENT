@@ -7,7 +7,7 @@
     {                                                    \
       if ((a) != -1)                                     \
         {                                                \
-          return 0;                                      \
+          return 0.0;                                      \
         }                                                \
     } while (0)
 
@@ -34,7 +34,7 @@ float parse_item(struct token_s *tokens, int *index, int *error_index)
               *error_index = *index;
               return 0.0;
             }
-          
+
           (*index)++;
           ERROR_CHECK(*error_index);
         }
@@ -44,14 +44,14 @@ float parse_item(struct token_s *tokens, int *index, int *error_index)
           return 0.0;
         }
     }
-  
+
   return result;
 }
 
 float parse_factor(struct token_s *tokens, int *index, int *error_index)
 {
   float result;
-  
+
   if (tokens[*index].symbol == '-')
     {
       (*index)++;
@@ -61,8 +61,8 @@ float parse_factor(struct token_s *tokens, int *index, int *error_index)
     {
       result = parse_item(tokens, index, error_index);
     }
-  
-  ERROR_CHECK(*error_index);    
+
+  ERROR_CHECK(*error_index);
 
   while (tokens[*index].symbol == '^')
     {
@@ -104,7 +104,7 @@ float parse_expression(struct token_s *tokens, int *index, int *error_index)
 {
   float result = parse_term(tokens, index, error_index);
   ERROR_CHECK(*error_index);
-  
+
   while (tokens[*index].type == SYMBOL
          && (tokens[*index].symbol == '+'
              || tokens[*index].symbol == '-'))

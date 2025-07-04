@@ -16,7 +16,7 @@ void main(void)
           printf("Input is too long!/n");
           continue;
         }
-      
+
       int error_index = -1;
       float result = evaluate_expression_from_string(input_string, &error_index);
       if (error_index != -1)

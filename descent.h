@@ -5,7 +5,7 @@
 
 /*********************************************************************
  * Name: evaluate_expression_from_string
- *  
+ *
  * Description: Takes in a string describing an algebraic expression
  *              and attempts to evaluate it. If an error occurs,
  *              its (token) location is placed in error_index.
