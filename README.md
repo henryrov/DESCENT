@@ -12,6 +12,6 @@ A simple calculator program is included for trying out the library, which can be
 
 How?
 ====
-Run `make install` to install the library in your system. It can be statically linked in other programs with the header "descent.h" and the linker argument -ldescent.
+Run `make install` to install the library in your system. It can be statically linked in other programs with the header "descent.h" and the linker arguments -ldescent and -lm.
 
 Run `make uninstall` to remove it from your system.

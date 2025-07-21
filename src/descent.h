@@ -1,6 +1,8 @@
 #ifndef DESCENT_H
 #define DESCENT_H
 
+#include "math.h"
+
 /******************** Library public funtions ************************/
 
 /*********************************************************************
@@ -14,6 +16,7 @@
  *
  * Returns: The result of the expression if successful, 0 otherwise.
  *********************************************************************/
+
 float evaluate_expression_from_string(char *string, int *error_index);
 
 #endif
