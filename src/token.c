@@ -18,7 +18,7 @@ int tokenize(char *input_string, int string_len, struct token_s *token_list)
     {
       char current_char = input_string[i];
 
-      if ((current_char >= 48) && (current_char <= 57))
+      if (((current_char >= '0') && (current_char <= '9')) || (current_char == '.'))
         {
           /* Character is a number */
 
