@@ -7,10 +7,10 @@ float evaluate_expression_from_string(char *string, int *error_index)
 {
   int string_len = strlen(string) + 1;
 
-  /* string_len + 1 is the maximum number of tokens present */
+  /* string_len is the maximum number of tokens present */
 
   struct token_s *tokens =
-    (struct token_s *)malloc((string_len + 1) * sizeof(struct token_s));
+    (struct token_s *)malloc((string_len) * sizeof(struct token_s));
 
   if (tokenize(string, string_len, tokens) < 0)
     {
